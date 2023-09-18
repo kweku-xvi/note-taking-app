@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <h3>Home</h3>
+    <div class="container-lg">
+        <div class="list-group">
+          <div class="row">
+              {% for note in user.note.all %}
+                  <div class="col-md-4">                
+                      <div class="card-body-lg">
+                          <h5 class="card-title-lg">
+                            <a href="{% url 'update-note' note.pk %}" class="list-group-item list-group-item-action list-group-item-danger">{{note.title}}</a>
+                          </h5>
+                      </div>                    
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create Note{% endblock %}
+
+{% block content %}
+    <h3>Create Note</h3>
+    <form class="form-group" method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-success">Create</button>
+        <a href="{% url 'delete-note' object.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'home-page' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
