@@ -5,22 +5,50 @@
     Profile 
 {% endblock %}
 
-{% block content %}
-    <h3>Profile</h3>
-    <div class="content-section">
-        <div class="media">
-          <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-          <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-          </div>
+{% block header %}
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand">NoteTaker</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home-page' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create-note' %}">Create Note</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <a class="btn btn-info my-2 my-sm-0 mr-2" href="{% url 'profile' %}">Profile</a>
+          <a class="btn btn-danger my-2 my-sm-0" href="{% url 'logout' %}">Log Out</a>
         </div>
-        <!-- FORM HERE -->
-        <form class="form-group" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{u_form|crispy}}
-            {{p_form|crispy}}
-            <button type="submit" class="btn btn-outline-success">Update</button>
-        </form>
+    </nav>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <h1>Profile Info</h1>
+
+    <div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img mb-2 mr-3" src="{{ user.profile.image.url }}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
     </div>
+    <!-- FORM HERE -->
+    <form class="form-group" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{u_form|crispy}}
+      {{p_form|crispy}}
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+  </div>
 {% endblock %}

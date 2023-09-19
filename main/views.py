@@ -7,6 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 def home(response):
     return render(response, 'main/home.html')
 
+def welcome(request):
+    return render(request, 'main/welcome.html')
+
 class CreateNoteView(LoginRequiredMixin, CreateView):
     model = Note
     fields = ['title', 'content']
@@ -34,10 +37,4 @@ class UpdateNoteView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class DeleteNoteView(LoginRequiredMixin, DeleteView):
     model = Note
-    success_url = '/'
-
-    # def test_func(self): 
-    #     note = self.get_object()
-    #     if self.request.user == note.user:
-    #         return True
-    #     return False
+    success_url = '/home'

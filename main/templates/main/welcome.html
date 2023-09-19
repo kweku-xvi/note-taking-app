@@ -1,32 +1,34 @@
-{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Make the body take up the full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+    </style>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>{% block title %} {% endblock %}</title>
+    <title>Welcome</title>
 </head>
 <body>
-  {% block header %} {% endblock %}
+    <div class="container d-flex justify-content-center">
+        <form class="form-group text-center" method="post">
+            {% csrf_token %}
+            <h1>NoteTaker</h1>        
+            <p>Capture Ideas, Share Thoughts</p>
+            <a type="submit" class="btn btn-secondary" href="{% url 'register' %}">Sign Up</a>
+            <a type="submit" name="login" class="btn btn-success" href="{% url 'login' %}">Sign In</a>
+        </form>
+    </div>
 
-    <main role="main" class="container">
-      <div class="col">
-        <div class="col-md-8">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-          {% block content %}{% endblock %}
-        </div>
-      </div>
-    </main>
-    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
